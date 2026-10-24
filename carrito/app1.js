@@ -118,6 +118,9 @@ BotonPagar.addEventListener("click", () => { // Evento del botón de pago
 
   const datos = carrito.obtenerCarrito();
 
+  // console.log(datos); para depuración, muestra el objeto con los productos y totales en la consola
+  // console.log(carrito.productos); // para depuración, muestra todos los productos con sus cantidades y subtotales en la consola
+
   if (datos.products.length === 0) {
     alert("No hay productos en el carrito");
     return;
