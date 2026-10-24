@@ -21,3 +21,9 @@ El botón de pago simula la compra y vacía el carrito; no procesa pagos reales.
 
 
 Los productos se cargan desde `api.php`.
+
+## Prueba de funcionamiento
+
+La siguiente captura muestra el carrito en funcionamiento, con productos, cantidades, subtotales, IVA 21% y el total con IVA:
+
+![Prueba de funcionamiento del carrito](carrito/Prueba_Del_Ejercicio.jpeg)
