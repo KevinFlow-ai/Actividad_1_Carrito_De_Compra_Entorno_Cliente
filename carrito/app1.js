@@ -5,7 +5,7 @@ class Carrito {
     this.productos = productos;
     this.moneda = moneda;
     
-    for (const producto of productos) {
+    for (const producto of productos) { // recorremos los productos y convertimos los precios a número, inicializamos cantidad y subtotal
       producto.price = Number(producto.price);
       producto.quantity = 0;
       producto.subtotal = 0;
@@ -18,11 +18,11 @@ class Carrito {
 
   actualizarUnidades(sku, unidades) {
     const producto = this.obtenerInformacionProducto(sku);
-    producto.quantity = Math.max(0, unidades);
-    producto.subtotal = Number((producto.price * producto.quantity).toFixed(2));
+    producto.quantity = Math.max(0, unidades); // no permitimos cantidades negativas
+    producto.subtotal = Number((producto.price * producto.quantity).toFixed(2)); // redondeamos a dos decimales
   }
 
-  obtenerCarrito() {
+  obtenerCarrito() { // devuelve un objeto con los productos que tienen cantidad > 0 y el total
     const products = this.productos.filter(producto => producto.quantity > 0);
     let total = 0;
     for (const producto of products) total += producto.subtotal;
@@ -85,17 +85,22 @@ function cambiar(sku, cambio) {
 //Pedimos los productos e iniciamos el carrito.
 const URL_API = "api.php";
 
-async function iniciar() {
+async function iniciar() { // carga los productos desde el servidor y crea el carrito
+
   try {
     const respuesta = await fetch(URL_API);
     if (!respuesta.ok) throw new Error("HTTP " + respuesta.status);
+
     const datos = await respuesta.json();
     carrito = new Carrito(datos.products, datos.Coin);
+
     mostrar();
     estado.textContent = "Productos cargados. Usa − y + para cambiar las unidades.";
+
   } catch (error) {
     estado.textContent = "No se pudieron cargar los productos: " + error.message;
   }
+  
 }
 
 iniciar();
