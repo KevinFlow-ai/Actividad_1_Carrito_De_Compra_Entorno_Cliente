@@ -123,7 +123,13 @@ BotonPagar.addEventListener("click", () => { // Evento del botón de pago
     return;
   }
 
-  alert(" Pago realizado correctamente");
+  
+  alert(" Pago realizado correctamente");{
+    for (const producto of carrito.productos) { // Vaciamos el carrito
+      carrito.actualizarUnidades(producto.ID_Producto, 0); 
+    }
+    mostrar();
+  }
 });
 
 
