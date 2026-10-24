@@ -59,6 +59,10 @@ const estado = document.querySelector("#estado");
 const subtotal = document.querySelector("#subtotal");
 const iva = document.querySelector("#iva");
 
+
+const BotonPagar = document.querySelector("#pagar"); // Botón de pago
+
+
 function dinero(numero) {
   return numero.toFixed(2) + " " + carrito.moneda;
 }
@@ -89,11 +93,11 @@ function mostrar() {
     tabla.append(fila);
   }
 
-  const datos = carrito.obtenerCarrito();
-  for (const producto of datos.products) {
+  const datos = carrito.obtenerCarrito(); // obtenemos los productos con cantidad > 0 y el total
+  for (const producto of datos.products) { // dibujamos el resumen
     const li = document.createElement("li");
-    li.textContent = `${producto.quantity} × ${producto.title}: ${dinero(producto.subtotal)}`;
-    resumen.append(li);
+    li.textContent = `${producto.quantity} × ${producto.title}: ${dinero(producto.subtotal)}`; // ejemplo: 2 × Camiseta: 39.98 €
+    resumen.append(li); // añadimos el elemento a la lista
   }
 
   // Mostramos los totales.
@@ -108,6 +112,21 @@ function cambiar(sku, cambio) {
   carrito.actualizarUnidades(sku, producto.quantity + cambio);
   mostrar();
 }
+
+
+BotonPagar.addEventListener("click", () => { // Evento del botón de pago
+
+  const datos = carrito.obtenerCarrito();
+
+  if (datos.products.length === 0) {
+    alert("No hay productos en el carrito");
+    return;
+  }
+
+  alert(" Pago realizado correctamente");
+});
+
+
 
 //Pedimos los productos e iniciamos el carrito.
 const URL_API = "api.php";

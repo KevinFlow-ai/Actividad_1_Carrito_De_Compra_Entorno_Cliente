@@ -27,6 +27,22 @@ ul { padding: 0; list-style: none; }
 li { margin: 15px 0; }
 .total { display: flex; justify-content: space-between; border-top: 1px solid #aaa; padding-top: 18px; }
 
+
+#pagar {
+  width: 100%; /* Ocupa todo el ancho disponible del carrito */
+  font-size: 16px;
+  background-color: #2c2c26; /* Color de fondo del botón */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+#pagar:hover {
+  background-color: #10d610; /* Efecto al pasar el mouse */
+}
+
+
 @media (max-width: 800px) {
   main { flex-direction: column; }
   section, aside { width: 100%; }
