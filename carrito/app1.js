@@ -23,11 +23,30 @@ class Carrito {
   }
 
   obtenerCarrito() { // devuelve un objeto con los productos que tienen cantidad > 0 y el total
-    const products = this.productos.filter(producto => producto.quantity > 0);
-    let total = 0;
-    for (const producto of products) total += producto.subtotal;
-    return { products, total: Number(total.toFixed(2)), currency: this.moneda };
+  const products = this.productos.filter(producto => producto.quantity > 0);
+  let total = 0;
+
+  for (const producto of products) {
+    total += producto.subtotal;
   }
+
+
+
+  
+  total = Number(total.toFixed(2));
+  const iva = Number((total * 0.21).toFixed(2));
+  const totalConIVA = Number((total + iva).toFixed(2));
+
+  return {
+    products,
+    total: Number(total.toFixed(2)),
+    iva,
+    totalConIVA,
+    currency: this.moneda
+    
+  }
+}
+  
 }
 
 let carrito;
@@ -35,6 +54,10 @@ const tabla = document.querySelector("#productos");
 const resumen = document.querySelector("#resumen");
 const total = document.querySelector("#total");
 const estado = document.querySelector("#estado");
+
+
+const subtotal = document.querySelector("#subtotal");
+const iva = document.querySelector("#iva");
 
 function dinero(numero) {
   return numero.toFixed(2) + " " + carrito.moneda;
@@ -72,7 +95,11 @@ function mostrar() {
     li.textContent = `${producto.quantity} × ${producto.title}: ${dinero(producto.subtotal)}`;
     resumen.append(li);
   }
-  total.textContent = dinero(datos.total);
+
+  // Mostramos los totales.
+  subtotal.textContent = dinero(datos.total);
+  iva.textContent = dinero(datos.iva);
+  total.textContent = dinero(datos.totalConIVA);
 }
 
 // Cada botón cambia una cantidad y vuelve a dibujar la pantalla.
