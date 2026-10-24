@@ -2,7 +2,7 @@
 
 ### Autor: **Kevin Flores**
 
-## Asignatura: **Entorno Servidor_2ºDAW_UNIR**
+## Asignatura: **Entorno Cliente_2ºDAW_UNIR**
 ## Curso: **2026/2027**
 
 
